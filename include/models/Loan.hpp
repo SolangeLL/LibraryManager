@@ -1,7 +1,7 @@
 #pragma once
 
-#include "domain/entities/books/ABook.hpp"
-#include "domain/entities/users/AUser.hpp"
+#include "models/books/ABook.hpp"
+#include "models/users/AUser.hpp"
 #include <memory>
 #include <chrono>
 #include <vector>
@@ -13,7 +13,7 @@ class Loan
 {
 public:
     Loan(const std::string &id, std::shared_ptr<AUser> user, std::shared_ptr<ABook> book, Date loan, Date due)
-        : m_loanId(id), m_user(user), m_book(book), m_loanDate(loan), m_dueDate(due), m_returned(false) {}
+        : m_loanId(id), m_user(user), m_book(book), m_loanDate(loan), m_dueDate(due) {}
 
     std::string GetId() const { return m_loanId; }
     std::shared_ptr<AUser> GetUser() const { return m_user; }
@@ -44,5 +44,5 @@ private:
     std::shared_ptr<ABook> m_book;
     Date m_loanDate;
     Date m_dueDate;
-    bool m_returned;
+    bool m_returned = false;
 };

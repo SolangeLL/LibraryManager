@@ -6,9 +6,7 @@ class ABook : public IBorrowable
 {
 public:
     ABook(const std::string &id, const std::string &title, const std::string &author)
-        : m_id(id), m_title(title), m_author(author), m_available(true) {}
-
-    virtual ~ABook() = default;
+        : m_id(id), m_title(title), m_author(author) {}
 
     bool IsAvailable() const override { return m_available; }
     std::string GetId() const override { return m_id; }
@@ -24,5 +22,5 @@ protected:
     std::string m_id;
     std::string m_title;
     std::string m_author;
-    bool m_available;
+    bool m_available = true;
 };

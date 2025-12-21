@@ -1,16 +1,22 @@
-#include "domain/entities/books/Novel.hpp"
-#include "domain/entities/books/TextBook.hpp"
-#include "domain/entities/users/Student.hpp"
-#include "domain/entities/users/Professor.hpp"
+#include "models/books/Novel.hpp"
+#include "models/books/TextBook.hpp"
+#include "models/users/Student.hpp"
+#include "models/users/Professor.hpp"
 #include "services/LoanService.hpp"
 #include "services/notifications/EmailNotificationService.hpp"
 
 #include <iostream>
 
+#include "services/InputService.hpp"
+
 // TODO: Create custom exception system
 
 int main(void)
 {
+    //  InputService inputService;
+
+    //  inputService.RegisterCommand()
+
     std::cout << "=== Library Management System ===\n\n";
     std::cout << "\\\\ Test Prints //\n";
 

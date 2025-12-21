@@ -1,5 +1,6 @@
 #include "services/LoanService.hpp"
 #include <iostream>
+#include <fmt/core.h>
 
 LoanService::LoanService(std::shared_ptr<INotificationService> notificationService)
     : m_notificationService(notificationService) {}
@@ -12,8 +13,7 @@ bool LoanService::CreateLoan(std::shared_ptr<AUser> user, std::shared_ptr<ABook>
         return false;
     }
 
-    int activeLoans = CountActiveLoans(user);
-    if (activeLoans >= user->GetMaxLoans())
+    if (CountActiveLoans(user) >= user->GetMaxLoans())
     {
         std::cout << "Loan limit reached for this user.\n";
         return false;
@@ -22,7 +22,7 @@ bool LoanService::CreateLoan(std::shared_ptr<AUser> user, std::shared_ptr<ABook>
     auto now = std::chrono::system_clock::now();
     auto due = now + std::chrono::hours(24 * book->GetMaxLoanDays());
 
-    std::string loanId = "LOAN_" + std::to_string(m_loans.size() + 1);
+    std::string loanId = fmt::format("LOAN_{}", std::to_string(m_loans.size() + 1));
     auto loan = std::make_shared<Loan>(loanId, user, book, now, due);
 
     m_loans.push_back(loan);
@@ -36,9 +36,9 @@ bool LoanService::CreateLoan(std::shared_ptr<AUser> user, std::shared_ptr<ABook>
     return true;
 }
 
-bool LoanService::ReturnBook(const std::string &loanId)
+bool LoanService::ReturnBook(const std::string_view &loanId)
 {
-    for (auto &loan : m_loans)
+    for (const auto &loan : m_loans)
     {
         if (loan->GetId() == loanId && !loan->IsReturned())
         {
@@ -46,7 +46,7 @@ bool LoanService::ReturnBook(const std::string &loanId)
             loan->GetBook()->SetAvailable(true);
 
             double latePenalty = loan->CalculateLatePenalty();
-            if (latePenalty > 0)
+            if (loan->CalculateLatePenalty() > 0)
             {
                 std::cout << "Late penalty: " << latePenalty << "€\n";
             }

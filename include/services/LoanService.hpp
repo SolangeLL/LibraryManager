@@ -1,15 +1,15 @@
 #pragma once
 
-#include "domain/entities/Loan.hpp"
+#include "models/Loan.hpp"
 #include "interfaces/INotificationService.hpp"
 
 class LoanService
 {
 public:
-    LoanService(std::shared_ptr<INotificationService> notificationService);
+    explicit LoanService(std::shared_ptr<INotificationService> notificationService);
 
     bool CreateLoan(std::shared_ptr<AUser> user, std::shared_ptr<ABook> book);
-    bool ReturnBook(const std::string &loadId);
+    bool ReturnBook(const std::string_view &loadId);
     int CountActiveLoans(std::shared_ptr<AUser> user) const;
     std::vector<std::shared_ptr<Loan>> GetOverdueLoans() const;
 
