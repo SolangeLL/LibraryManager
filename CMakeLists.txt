@@ -22,6 +22,14 @@ target_include_directories(
 target_sources(LibraryManager PRIVATE
     src/main.cpp
     src/services/LoanService.cpp
+    src/services/InputService.cpp
+    src/commands/Add.cpp
+    src/commands/Borrow.cpp
+    src/commands/Delete.cpp
+    src/commands/Display.cpp
+    src/commands/Login.cpp
+    src/commands/Return.cpp
+    src/repositories/InMemoryBookRepository.cpp
 )
 
 target_link_libraries(LibraryManager PRIVATE fmt::fmt)

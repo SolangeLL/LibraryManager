@@ -2,11 +2,14 @@
 
 #include "models/books/ABook.hpp"
 
-class TextBook : public ABook
+namespace Books
 {
-public:
-    using ABook::ABook;
+    class TextBook : public ABook
+    {
+    public:
+        using ABook::ABook;
 
-    int GetMaxLoanDays() const override { return 14; }
-    std::string GetType() const override { return "Manual"; }
-};
+        int GetMaxLoanDays() const override { return 14; }
+        std::string GetType() const override { return "Manual"; }
+    };
+}

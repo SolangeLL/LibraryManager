@@ -7,6 +7,5 @@ class IBorrowable
 public:
     virtual ~IBorrowable() = default;
     virtual bool IsAvailable() const = 0;
-    virtual std::string GetId() const = 0;
-    virtual std::string GetTitle() const = 0;
+    virtual const std::string& GetId() const = 0;
 };

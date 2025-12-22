@@ -2,11 +2,15 @@
 
 #include "models/users/AUser.hpp"
 
-class Guest : public AUser
+namespace Users
 {
-public:
-    using AUser::AUser;
+    class Guest : public AUser
+    {
+    public:
+        using AUser::AUser;
 
-    int GetMaxLoans() const override { return 3; }
-    double GetPenaltyRate() const override { return 1.0; }
-};
+        int GetMaxLoans() const override { return 3; }
+        double GetPenaltyRate() const override { return 1.0; }
+    };
+
+}
