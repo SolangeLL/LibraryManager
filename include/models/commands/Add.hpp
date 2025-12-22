@@ -2,6 +2,7 @@
 
 #include "interfaces/ICommand.hpp"
 #include "interfaces/IBookRepository.hpp"
+#include "utils/BookFactory.hpp"
 #include <memory>
 
 namespace Commands
@@ -9,10 +10,11 @@ namespace Commands
     class Add : public ICommand
     {
     public:
-        Add(std::shared_ptr<IBookRepository> bookRepository);
-        void Execute(const ParsedCommand &command) override;
+        Add(BookFactory& bookFactory, std::shared_ptr<IBookRepository> bookRepository);
+        void Execute(const ParsedInput &parsedInput) override;
 
     private:
+        BookFactory &m_bookFactory;
         std::shared_ptr<IBookRepository> m_bookRepository;
     };
 }

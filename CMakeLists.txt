@@ -14,6 +14,13 @@ FetchContent_MakeAvailable(fmt)
 
 add_executable(LibraryManager)
 
+if ( CMAKE_COMPILER_IS_GNUCC )
+    target_compile_options(LibraryManager PRIVATE -Wall -Wextra)
+endif()
+if ( MSVC )
+    target_compile_options(LibraryManager PRIVATE /W4)
+endif()
+
 target_include_directories(
     LibraryManager PRIVATE
     ${PROJECT_SOURCE_DIR}/include
@@ -29,7 +36,9 @@ target_sources(LibraryManager PRIVATE
     src/commands/Display.cpp
     src/commands/Login.cpp
     src/commands/Return.cpp
+    src/commands/Help.cpp
     src/repositories/InMemoryBookRepository.cpp
+    src/utils/BookFactory.cpp
 )
 
 target_link_libraries(LibraryManager PRIVATE fmt::fmt)

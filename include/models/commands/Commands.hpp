@@ -6,3 +6,4 @@
 #include "Display.hpp"
 #include "Login.hpp"
 #include "Return.hpp"
+#include "Help.hpp"

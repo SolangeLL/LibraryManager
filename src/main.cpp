@@ -1,21 +1,24 @@
-// #include "models/books/Novel.hpp"
-// #include "models/books/TextBook.hpp"
-// #include "models/users/Student.hpp"
-// #include "models/users/Professor.hpp"
-// #include "services/LoanService.hpp"
-// #include "services/notifications/EmailNotificationService.hpp"
-
 #include <iostream>
 
 #include "services/InputService.hpp"
 #include "repositories/InMemoryBookRepository.hpp"
+#include "utils/BookFactory.hpp"
+
+#include "models/books/Novel.hpp"
+#include "models/books/TextBook.hpp"
+#include <fmt/color.h>
 
 // TODO: Create custom exception system
 
 int main(void)
 {
      std::shared_ptr<InMemoryBookRepository> bookRepository = std::make_shared<InMemoryBookRepository>();
-     InputService inputService(bookRepository);
+     BookFactory bookFactory;
+
+     bookFactory.RegisterType<Books::Novel>("NOVEL");
+     bookFactory.RegisterType<Books::TextBook>("TEXTBOOK");
+
+     InputService inputService(bookFactory, bookRepository);
 
      while (true)
      {
@@ -26,7 +29,7 @@ int main(void)
           }
           catch (const std::exception &e)
           {
-               std::cerr << e.what() << '\n';
+               std::cerr << fmt::format(fg(fmt::color::red), "ERROR: {}", e.what()) << '\n';
           }
      }
 

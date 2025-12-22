@@ -10,7 +10,7 @@ namespace Commands
     {
     public:
         Display(std::shared_ptr<IBookRepository> bookRepository);
-        void Execute(const ParsedCommand &command) override;
+        void Execute(const ParsedInput &parsedInput) override;
 
     private:
         std::shared_ptr<IBookRepository> m_bookRepository;

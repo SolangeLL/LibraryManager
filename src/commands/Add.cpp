@@ -1,20 +1,22 @@
 #include "models/commands/Add.hpp"
+#include <fmt/color.h>
 
 namespace Commands
 {
-    Add::Add(std::shared_ptr<IBookRepository> bookRepository) : m_bookRepository(bookRepository) {}
+    Add::Add(BookFactory& bookFactory, std::shared_ptr<IBookRepository> bookRepository)
+    : m_bookFactory(bookFactory), m_bookRepository(bookRepository) {}
 
-    void Add::Execute(const ParsedCommand &command)
+    void Add::Execute(const ParsedInput &parsedInput)
     {
-        std::cout << "Action: " << command.action << std::endl;
-        std::cout << "type: " << command.itemType << std::endl;
-        std::cout << "args: " << std::endl;
-        for (auto &arg : command.args)
-            std::cout << "- " << arg << std::endl;
-
-        if (command.itemType.empty() == true)
+        if (parsedInput.itemType.empty() == true)
             throw std::invalid_argument("No type has been given");
 
-        std::cout << "Execute ADD command" << std::endl;
+        if (parsedInput.args.empty() == true)
+            throw std::invalid_argument("No args has been given");
+
+        auto newBook = m_bookFactory.Create(parsedInput.itemType, parsedInput.args);
+        m_bookRepository->Save(newBook);
+
+        fmt::print(fg(fmt::color::green), "Item {} successfully added!\n", parsedInput.itemType);
     }
 }

@@ -2,12 +2,12 @@
 
 #include <vector>
 #include <string>
-#include "types/ParsedCommand.hpp"
+#include "types/ParsedInput.hpp"
 
 #include <iostream>
 class ICommand
 {
 public:
     virtual ~ICommand() = default;
-    virtual void Execute(const ParsedCommand &command) = 0;
+    virtual void Execute(const ParsedInput &parsedInput) = 0;
 };

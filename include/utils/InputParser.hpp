@@ -1,14 +1,14 @@
 #pragma once
 
 #include <stdexcept>
-#include "types/ParsedCommand.hpp"
+#include "types/ParsedInput.hpp"
 
 class InputParser
 {
 public:
-    static ParsedCommand Parse(const std::string &input)
+    static ParsedInput Parse(const std::string &input)
     {
-        ParsedCommand result;
+        ParsedInput result;
         std::vector<std::string> tokens = Tokenize(input);
 
         if (tokens.empty())

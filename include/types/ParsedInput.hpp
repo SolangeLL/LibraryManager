@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-struct ParsedCommand
+struct ParsedInput
 {
     std::string action = "";
     std::string itemType = "";

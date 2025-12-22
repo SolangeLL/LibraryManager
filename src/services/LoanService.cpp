@@ -26,7 +26,7 @@ bool LoanService::CreateLoan(std::shared_ptr<AUser> user, std::shared_ptr<ABook>
     auto loan = std::make_shared<Loan>(loanId, user, book, now, due);
 
     m_loans.push_back(loan);
-    book->SetAvailable(false);
+    book->Borrow();
 
     m_notificationService->Notify(
         user->GetEmail(),
@@ -43,7 +43,7 @@ bool LoanService::ReturnBook(const std::string_view &loanId)
         if (loan->GetId() == loanId && !loan->IsReturned())
         {
             loan->MarkAsReturned();
-            loan->GetBook()->SetAvailable(true);
+            loan->GetBook()->Return();
 
             double latePenalty = loan->CalculateLatePenalty();
             if (loan->CalculateLatePenalty() > 0)
