@@ -2,7 +2,9 @@
 
 void InMemoryBookRepository::Save(std::shared_ptr<IBook> data)
 {
-    m_books.insert({GetNextId(), data});
+    static int index = 0;
+
+    m_books.insert({std::to_string(index++), data});
 }
 
 std::shared_ptr<IBook> InMemoryBookRepository::GetById(const std::string &id)
@@ -31,10 +33,4 @@ void InMemoryBookRepository::DeleteById(const std::string &id)
         throw std::invalid_argument("No book with id '" + id + "' was found.");
 
     m_books.erase(id);
-}
-
-std::string InMemoryBookRepository::GetNextId()
-{
-    static int index = 0;
-    return std::to_string(index++);
 }

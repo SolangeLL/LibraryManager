@@ -15,7 +15,7 @@ ParsedInput InputService::GetParsedInput()
     ParsedInput command = InputParser::Parse(rawCommand);
 
     ConvertStringToUppercase(command.action);
-    ConvertStringToUppercase(command.itemType);
+    ConvertStringToUppercase(command.option);
 
     return command;
 }

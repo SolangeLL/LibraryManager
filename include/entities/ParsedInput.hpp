@@ -6,6 +6,6 @@
 struct ParsedInput
 {
     std::string action = "";
-    std::string itemType = "";
+    std::string option = "";
     std::vector<std::string> args;
 };

@@ -14,7 +14,7 @@ ParsedInput InputParser::Parse(const std::string &input)
 
     if (tokens.size() > 1)
     {
-        result.itemType = tokens[1];
+        result.option = tokens[1];
     }
 
     if (tokens.size() > 2)

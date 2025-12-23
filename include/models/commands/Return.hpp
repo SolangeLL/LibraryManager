@@ -15,6 +15,8 @@ namespace Commands
         const std::string &GetName() const override { return m_name; };
 
     private:
+        bool IsBookAlreadyReturned(std::shared_ptr<IBook> book) const;
+
         std::shared_ptr<IBookRepository> m_bookRepository;
         const std::string m_name = "RETURN";
     };

@@ -14,7 +14,6 @@ public:
     std::shared_ptr<IBook> GetById(const std::string &id) override;
     std::vector<std::shared_ptr<IBook>> GetAll() override;
     void DeleteById(const std::string &id) override;
-    std::string GetNextId() override;
 
 private:
     std::unordered_map<std::string, std::shared_ptr<IBook>> m_books;

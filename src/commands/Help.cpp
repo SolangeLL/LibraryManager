@@ -8,13 +8,13 @@ namespace Commands
 
     void Help::Execute(const ParsedInput &parsedInput)
     {
-        if (parsedInput.itemType.empty() == true)
+        if (parsedInput.option.empty() == true)
         {
             DisplayAllDescriptions();
             return;
         }
 
-        DisplayCommandDescription(parsedInput.itemType);
+        DisplayCommandDescription(parsedInput.option);
     }
 
     std::string Help::GetDescription() const

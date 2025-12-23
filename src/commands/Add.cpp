@@ -8,16 +8,16 @@ namespace Commands
 
     void Add::Execute(const ParsedInput &parsedInput)
     {
-        if (parsedInput.itemType.empty() == true)
+        if (parsedInput.option.empty() == true)
             throw std::invalid_argument("No type has been given");
 
         if (parsedInput.args.empty() == true)
             throw std::invalid_argument("No args has been given");
 
-        auto newBook = m_bookFactory.Create(parsedInput.itemType, parsedInput.args);
+        auto newBook = m_bookFactory.Create(parsedInput.option, parsedInput.args);
         m_bookRepository->Save(newBook);
 
-        fmt::print(fg(fmt::color::green), "Item {} successfully added!\n", parsedInput.itemType);
+        fmt::print(fg(fmt::color::green), "Item {} successfully added!\n", parsedInput.option);
     }
 
     std::string Add::GetDescription() const

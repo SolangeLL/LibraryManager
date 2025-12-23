@@ -1,6 +1,7 @@
 #pragma once
 
 #include "interfaces/IBook.hpp"
+#include "utils/Logger.hpp"
 #include <vector>
 #include <stdexcept>
 

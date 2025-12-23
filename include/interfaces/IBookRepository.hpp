@@ -12,5 +12,4 @@ public:
     virtual std::shared_ptr<IBook> GetById(const std::string& id) = 0;
     virtual std::vector<std::shared_ptr<IBook>> GetAll() = 0;
     virtual void DeleteById(const std::string& id) = 0;
-    virtual std::string GetNextId() = 0;
 };
