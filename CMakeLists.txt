@@ -45,6 +45,7 @@ target_sources(LibraryManager PRIVATE
     src/commands/Delete.cpp
     src/commands/Display.cpp
     src/commands/Login.cpp
+    src/commands/Logout.cpp
     src/commands/Return.cpp
     src/commands/Help.cpp
     src/commands/Quit.cpp
