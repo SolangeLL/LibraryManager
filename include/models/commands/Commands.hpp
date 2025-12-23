@@ -7,3 +7,4 @@
 #include "Login.hpp"
 #include "Return.hpp"
 #include "Help.hpp"
+#include "Quit.hpp"

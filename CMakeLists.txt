@@ -47,7 +47,9 @@ target_sources(LibraryManager PRIVATE
     src/commands/Login.cpp
     src/commands/Return.cpp
     src/commands/Help.cpp
+    src/commands/Quit.cpp
     src/repositories/InMemoryBookRepository.cpp
+    src/repositories/CommandRepository.cpp
     src/utils/BookFactory.cpp
     src/utils/InputParser.cpp
     src/utils/Logger.cpp

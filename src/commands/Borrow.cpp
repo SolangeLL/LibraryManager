@@ -9,4 +9,12 @@ namespace Commands
     {
         std::cout << "Execute BORROW command" << std::endl;
     }
+
+    std::string Borrow::GetDescription() const
+    {
+        std::string description = "";
+        description += m_name;
+        description += "\tBorrow item type. Set item to unavailable.";
+        return description;
+    }
 }

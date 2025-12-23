@@ -8,4 +8,12 @@ namespace Commands
     {
         std::cout << "Execute DELETE command" << std::endl;
     }
+
+    std::string Delete::GetDescription() const
+    {
+        std::string description = "";
+        description += m_name;
+        description += "\tDelete item.";
+        return description;
+    }
 }

@@ -8,4 +8,12 @@ namespace Commands
     {
         std::cout << "Execute RETURN command" << std::endl;
     }
+
+    std::string Return::GetDescription() const
+    {
+        std::string description = "";
+        description += m_name;
+        description += "\tReturn item type. Set item to available.";
+        return description;
+    }
 }

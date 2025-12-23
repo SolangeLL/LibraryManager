@@ -15,6 +15,7 @@ std::shared_ptr<IBook> InMemoryBookRepository::GetById(const std::string &id)
 std::vector<std::shared_ptr<IBook>> InMemoryBookRepository::GetAll()
 {
     std::vector<std::shared_ptr<IBook>> allBooks;
+    allBooks.reserve(m_books.size());
 
     for (const auto &[key, book] : m_books)
     {

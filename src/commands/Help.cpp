@@ -1,17 +1,53 @@
 #include "models/commands/Help.hpp"
+#include "utils/Logger.hpp"
+#include <fmt/color.h>
 
 namespace Commands
 {
+    Help::Help(CommandRepository &commandRepository) : m_commandRepository(commandRepository) {}
+
     void Help::Execute(const ParsedInput &parsedInput)
     {
+        if (parsedInput.itemType.empty() == true)
+        {
+            DisplayAllDescriptions();
+            return;
+        }
+
+        DisplayCommandDescription(parsedInput.itemType);
+    }
+
+    std::string Help::GetDescription() const
+    {
+        std::string description = "";
+        description += m_name;
+        description += "\tDisplay all available commands.";
+        return description;
+    }
+
+    void Help::DisplayAllDescriptions()
+    {
         std::cout << "========== COMMANDS ==========" << std::endl;
-        std::cout << "ADD <book_type> <title> <author> <number_pages>" << std::endl;
-        std::cout << "\tAdd a new book in data base." << std::endl;
-        std::cout << "\t<book_type>: NOVEL, TEXTBOOK" << std::endl;
-        std::cout << "\t<title>: Title, \"Longer title\"" << std::endl;
-        std::cout << "\t<author>: Buddy, \"Victor Hugo\"" << std::endl;
-        std::cout << "\t<number_pages>: 1, 1500" << std::endl;
-        std::cout << "DISPLAY " << std::endl;
-        std::cout << "\tDisplay all books from data base." << std::endl;
+
+        std::vector<std::shared_ptr<ICommand>> commands = m_commandRepository.GetAll();
+        for (const auto &command : commands)
+        {
+            std::cout << command->GetDescription() << std::endl;
+        }
+    }
+
+    void Help::DisplayCommandDescription(const std::string &name)
+    {
+        try
+        {
+            std::shared_ptr<ICommand> command = m_commandRepository.GetByName(name);
+            std::string italicName = fmt::format(fmt::emphasis::italic, "{}", name);
+            std::cout << "========== USAGE OF COMMAND " + italicName + " ==========" << std::endl;
+            std::cout << command->GetDescription() << std::endl;
+        }
+        catch (const std::exception &e)
+        {
+            LOG_ERROR("{}", e.what());
+        }
     }
 }

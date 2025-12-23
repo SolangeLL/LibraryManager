@@ -21,4 +21,12 @@ namespace Commands
             std::cout << phrase << std::endl;
         }
     }
+
+    std::string Display::GetDescription() const
+    {
+        std::string description = "";
+        description += m_name;
+        description += "\tDisplay every items.";
+        return description;
+    }
 }
