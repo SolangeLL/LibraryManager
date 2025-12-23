@@ -28,6 +28,7 @@ void RegisterCommands(CommandRepository &commandRepository, BookFactory &bookFac
      commandRepository.Save(std::make_shared<Commands::Delete>(bookRepository));
      commandRepository.Save(std::make_shared<Commands::Display>(bookRepository));
      commandRepository.Save(std::make_shared<Commands::Login>(bookRepository));
+     commandRepository.Save(std::make_shared<Commands::Logout>());
      commandRepository.Save(std::make_shared<Commands::Return>(bookRepository));
      commandRepository.Save(std::make_shared<Commands::Help>(commandRepository));
      commandRepository.Save(std::make_shared<Commands::Quit>(library));

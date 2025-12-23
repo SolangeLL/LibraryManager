@@ -5,6 +5,7 @@
 #include "Delete.hpp"
 #include "Display.hpp"
 #include "Login.hpp"
+#include "Logout.hpp"
 #include "Return.hpp"
 #include "Help.hpp"
 #include "Quit.hpp"
