@@ -12,6 +12,15 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(fmt)
 
+FetchContent_Declare(
+    spdlog
+    GIT_REPOSITORY https://github.com/gabime/spdlog.git
+    GIT_TAG v1.12.0
+)
+
+set(SPDLOG_FMT_EXTERNAL ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(spdlog)
+
 add_executable(LibraryManager)
 
 if ( CMAKE_COMPILER_IS_GNUCC )
@@ -24,6 +33,7 @@ endif()
 target_include_directories(
     LibraryManager PRIVATE
     ${PROJECT_SOURCE_DIR}/include
+    ${PROJECT_SOURCE_DIR}/libraries
 )
 
 target_sources(LibraryManager PRIVATE
@@ -39,6 +49,8 @@ target_sources(LibraryManager PRIVATE
     src/commands/Help.cpp
     src/repositories/InMemoryBookRepository.cpp
     src/utils/BookFactory.cpp
+    src/utils/InputParser.cpp
+    src/utils/Logger.cpp
 )
 
-target_link_libraries(LibraryManager PRIVATE fmt::fmt)
+target_link_libraries(LibraryManager PRIVATE fmt::fmt spdlog::spdlog)

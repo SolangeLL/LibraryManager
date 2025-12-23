@@ -4,7 +4,7 @@
 #include <string>
 #include <functional>
 #include <memory>
-#include "types/ParsedInput.hpp"
+#include "entities/ParsedInput.hpp"
 // #include "models/books/ABook.hpp"
 #include "interfaces/IBook.hpp"
 

@@ -2,7 +2,7 @@
 
 #include <vector>
 #include <string>
-#include "types/ParsedInput.hpp"
+#include "entities/ParsedInput.hpp"
 
 #include <iostream>
 class ICommand
